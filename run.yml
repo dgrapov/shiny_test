@@ -1,0 +1,10 @@
+version: "2.0"
+
+services:
+  
+  shiny_test:
+    container_name: shiny_test
+    image: shiny_test
+    ports:
+      - "3838:3838"
+    command: R -e "shiny::runApp('/app',host='0.0.0.0',port=3838)"
