@@ -1,29 +1,30 @@
-# Example shiny app and docker
+## Example shiny app and docker
 
-code: 
+`code`: https://github.com/dgrapov/shiny_test
 
-## Functionality:
+`docker`: https://hub.docker.com/r/dgrapov/shiny_test/
 
-* ###  create file
+### Functionality:
 
-* ### view environment variables
+* ####  create file
+
+* #### view environment variables
 
 
-## Run app from `R`
+### Run app from `R`
 ```{r,eval=FALSE}
 
 shiny::runApp('app',host='0.0.0.0',port=3838)
 
 ```
 
-## Build `docker` container
-```{bash, eval=FALSE}
+### Build `docker` container
+```{r,eval=FALSE}
 docker build -t "shiny_test" .
 ```
 
-## Run `docker` container
-```{bash,eval=FALSE}
+### Run `docker` container
+```{r,eval=FALSE}
 docker-compose -f run.yml up -d
-
 ```
 ### Connect to container at `<YOUR IP>:3838`

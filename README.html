@@ -119,28 +119,33 @@ $(document).ready(function () {
 </div>
 
 
-<div id="sample-shiny-app" class="section level1">
-<h1>Sample shiny app</h1>
-<div id="do-stuff" class="section level2">
-<h2>Do stuff:</h2>
+<div id="example-shiny-app-and-docker" class="section level2">
+<h2>Example shiny app and docker</h2>
+<p><code>code</code>: <a href="https://github.com/dgrapov/shiny_test" class="uri">https://github.com/dgrapov/shiny_test</a></p>
+<p><code>docker</code>: <a href="https://hub.docker.com/r/dgrapov/shiny_test/" class="uri">https://hub.docker.com/r/dgrapov/shiny_test/</a></p>
+<div id="functionality" class="section level3">
+<h3>Functionality:</h3>
 <ul>
-<li><h3 id="create-file">create file</h3></li>
-<li><h3 id="view-environment-variables">view environment variables</h3></li>
+<li><h4 id="create-file">create file</h4></li>
+<li><h4 id="view-environment-variables">view environment variables</h4></li>
 </ul>
 </div>
-<div id="run-app-from-r" class="section level2">
-<h2>Run app from <code>R</code></h2>
+<div id="run-app-from-r" class="section level3">
+<h3>Run app from <code>R</code></h3>
 <pre class="{r,eval=false}"><code>
-shiny::runApp('app',host='0.0.0.0',port='3838')
+shiny::runApp('app',host='0.0.0.0',port=3838)
 </code></pre>
 </div>
-<div id="run-app-from-docker" class="section level2">
-<h2>Run app from <code>docker</code></h2>
-<pre class="{bash,eval=false}"><code>docker-compose -f build.yml up -d
-</code></pre>
+<div id="build-docker-container" class="section level3">
+<h3>Build <code>docker</code> container</h3>
+<pre class="{r,eval=false}"><code>docker build -t &quot;shiny_test&quot; .</code></pre>
 </div>
-<div id="connect-to-container-at-localhost3838" class="section level2">
-<h2>Connect to container at <code>localhost:3838</code></h2>
+<div id="run-docker-container" class="section level3">
+<h3>Run <code>docker</code> container</h3>
+<pre class="{r,eval=false}"><code>docker-compose -f run.yml up -d</code></pre>
+</div>
+<div id="connect-to-container-at-your-ip3838" class="section level3">
+<h3>Connect to container at <code>&lt;YOUR IP&gt;:3838</code></h3>
 </div>
 </div>
 
