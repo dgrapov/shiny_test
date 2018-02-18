@@ -1,5 +1,16 @@
 
-source('utils.R',local = TRUE)
+
+#environmetnal variable not scoped correctly 
+#set default docker path for saved data
+if(!interactive()) {
+  tryCatch(setwd('/user_data'),error=function(e){e})
+  #create folders
+  source('/app/utils.R', local = TRUE)
+} else {
+  
+  source('utils.R', local = TRUE)
+}
+
 
 shinyServer(function(input, output) {
 

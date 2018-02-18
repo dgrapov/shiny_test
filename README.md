@@ -26,11 +26,10 @@ docker build -t "shiny_test" .
 ### Run `docker`
 ```{r,eval=FALSE}
 docker run -p 3838:3838 \
--e "DATA_PATH=<host_path_to_data>" \ #mount path where data will be saved
--v "<host_path_to_data>:/user_data" \ 
+-v "<host_path_to_data>:/user_data" \ # host location for created data
 -d dgrapov/shiny_test:latest
 ```
 
 
 ### Connect to container at `<YOUR IP>:3838`
-### View created data at `<host_path_to_data>`
+### View created objects at `<host_path_to_data>`
