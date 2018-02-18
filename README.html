@@ -136,16 +136,22 @@ $(document).ready(function () {
 shiny::runApp('app',host='0.0.0.0',port=3838)
 </code></pre>
 </div>
-<div id="build-docker-container" class="section level3">
-<h3>Build <code>docker</code> container</h3>
+<div id="build-docker" class="section level3">
+<h3>Build <code>docker</code></h3>
 <pre class="{r,eval=false}"><code>docker build -t &quot;shiny_test&quot; .</code></pre>
 </div>
-<div id="run-docker-container" class="section level3">
-<h3>Run <code>docker</code> container</h3>
-<pre class="{r,eval=false}"><code>docker-compose -f run.yml up -d</code></pre>
+<div id="run-docker" class="section level3">
+<h3>Run <code>docker</code></h3>
+<pre class="{r,eval=false}"><code>docker run -p 3838:3838 \
+-e &quot;DATA_PATH=&lt;host_path_to_data&gt;&quot; \ #mount path where data will be saved
+-v &quot;&lt;host_path_to_data&gt;:/user_data&quot; \ 
+-d dgrapov/shiny_test:latest</code></pre>
 </div>
 <div id="connect-to-container-at-your-ip3838" class="section level3">
 <h3>Connect to container at <code>&lt;YOUR IP&gt;:3838</code></h3>
+</div>
+<div id="view-created-data-at-host_path_to_data" class="section level3">
+<h3>view created data at <code>&lt;host_path_to_data&gt;</code></h3>
 </div>
 </div>
 
