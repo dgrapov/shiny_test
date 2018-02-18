@@ -4,9 +4,9 @@
 
 `docker`: https://hub.docker.com/r/dgrapov/shiny_test/
 
-### Functionality:
+### Tested Functionality:
 
-* ####  create file
+* ####  create folders and file
 
 * #### view environment variables
 

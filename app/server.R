@@ -1,8 +1,5 @@
 
-#set wd based on user path
-wd<-Sys.getenv("DATA_PATH")
-if(!is.null(wd)) setwd(wd)
-
+source('utils.R',local = TRUE)
 
 shinyServer(function(input, output) {
 
