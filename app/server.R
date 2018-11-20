@@ -1,15 +1,12 @@
 
 
-#environmetnal variable not scoped correctly 
-#set default docker path for saved data
-if(!interactive()) {
-  tryCatch(setwd('/user_data'),error=function(e){e})
-  #create folders
-  source('/app/utils.R', local = TRUE)
-} else {
-  
-  source('utils.R', local = TRUE)
-}
+#create folder structure
+library(fs)
+
+#create path if it does not exist
+save_path<-Sys.getenv('TEST_PATH')
+dir_create(save_path, mode = "u=rwx,go=rx", recursive = TRUE)
+
 
 
 shinyServer(function(input, output) {
@@ -29,21 +26,31 @@ shinyServer(function(input, output) {
   #save date-time stamp
   observeEvent(input$create_btn,{
     obj<-as.character(Sys.time())
-    cat(obj,file='date-time.txt')
+    cat(obj,file=paste0(save_path,'date-time.txt'))
   })
   
   #update file contents
   get_time<-reactive({
     input$create_btn
-    tryCatch(readLines('date-time.txt'),error=function(e){as.character(e)})
+    tryCatch(readLines(paste0(save_path,'date-time.txt')),error=function(e){'press the button to create a file'})
   })
   
   #environment
   output$env_in<-renderText({
+    
     paste(paste(names(Sys.getenv()),Sys.getenv(),sep=" = "),collapse='\n')
   })
-  output$env<-renderUI({
+  
+  #contents
+  output$dir_in<-renderText({
+    input$create_btn
+    dir(save_path)
+  })
+  
+  output$info<-renderUI({
     tagList(
+      h3('Contents'),
+      verbatimTextOutput('dir_in'),
       h3('Environment'),
       verbatimTextOutput('env_in')
     )
@@ -54,7 +61,7 @@ shinyServer(function(input, output) {
     fluidRow(
       column(12,
         uiOutput('create'),
-        uiOutput('env')
+        uiOutput('info')
       )
     )
     
