@@ -4,8 +4,9 @@
 library(fs)
 
 #create path if it does not exist
+# Sys.setenv('TEST_PATH'='/mnt/foo/')
 save_path<-Sys.getenv('TEST_PATH')
-dir_create(save_path, mode = "u=rwx,go=rx", recursive = TRUE)
+tryCatch(dir_create(save_path, mode = "u=rwx,go=rx", recursive = TRUE),error=function(e){e}) # debug env errors
 
 
 

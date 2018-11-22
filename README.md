@@ -1,26 +1,26 @@
-## Example shiny app via docker container and optionally kubernetes
+### Example shiny app via docker container
 
 
-### Simple tests involve setting the `path` based on the `TEST_PATH` environmental variable and:
+Simple tests involve setting the `path` based on the `TEST_PATH` environmental variable and:
 
 
-* #### viewing `path` contents and all environmental variables
+* viewing `path` contents and all environmental variables
 
-* #### create a file in the `path`
+* create a file in the `path`
 
 
 
-### Run app from `R`
+***Run*** `R`
 ```{r,eval=FALSE}
 shiny::runApp('app',host='0.0.0.0',port=3838)
 ```
 
-### Build `docker` 
+***Build*** `docker` 
 ```{r,eval=FALSE}
 docker build -t "shiny_test" .
 ```
 
-### Run `docker`
+***Run*** `docker`
 ```{r,eval=FALSE}
 
 export TEST_PATH='/test_folder/'
@@ -32,7 +32,7 @@ docker run --rm -p 3838:3838 \
 -d dgrapov/shiny_test:latest
 ```
 
-### Connect to container at `<YOUR IP>:3838`
-### View created objects at `<HOST_PATH>`
+Connect to container at `<YOUR IP>:3838`
+View created objects at `<HOST_PATH>`
 
 
