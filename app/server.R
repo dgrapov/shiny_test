@@ -1,17 +1,18 @@
 
 
-#create folder structure
-library(fs)
-
-#create path if it does not exist
-# Sys.setenv('TEST_PATH'='/mnt/foo/')
-save_path<-Sys.getenv('TEST_PATH')
-tryCatch(dir_create(save_path, mode = "u=rwx,go=rx", recursive = TRUE),error=function(e){e}) # debug env errors
+source('R/aws_utils.R')
+source('R/startup.R')
 
 
 
-shinyServer(function(input, output) {
+shinyServer(function(input, output,session) {
 
+  onStop(function(){
+    cat('Ending session from server onStop')
+    # end_data()
+    tryCatch(end_data(),error=function(e){e}) # avoid curl::curl_fetch_memory errors
+  })
+  
   #create a file on click
   output$create<-renderUI({
     fluidRow(
@@ -66,6 +67,16 @@ shinyServer(function(input, output) {
       )
     )
     
+  })
+  
+  session$onSessionEnded(function(){
+    
+    #not clear if onStop is enough?
+      cat('Ending session from onSessionEnded')
+      end_data()
+      Sys.sleep(2)
+      cat('done')
+   
   })
 
 })

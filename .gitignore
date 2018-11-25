@@ -4,3 +4,4 @@
 .Ruserdata
 *.Rproj
 NOTES.R
+tests.R
